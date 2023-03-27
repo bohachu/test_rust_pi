@@ -1,0 +1,19 @@
+name: Rust Action
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+      - name: Compile and run Rust code
+        run: |
+          cargo run --release | grep -Eo '\d{50}'
